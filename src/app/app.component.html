@@ -1,6 +1,8 @@
 <div style="display: flex;">
   <div style="flex: 0 0 300px;">
-    <app-gadget *ngFor="let gadget of gadgets" [gadget]="gadget"></app-gadget>
+    <div class="example-list" cdkDropList>
+      <app-gadget *ngFor="let gadget of gadgets" [gadget]="gadget" cdkDrag></app-gadget>
+    </div>
   </div>
   <div style="flex: 1 1 auto;">
 
