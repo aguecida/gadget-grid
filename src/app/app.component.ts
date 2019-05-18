@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { faBell, faTasks, faUserEdit, faHistory, faEnvelope, faComment, faAddressBook } from '@fortawesome/free-solid-svg-icons';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 import { Gadget } from './gadget/gadget';
 
@@ -19,5 +20,9 @@ export class AppComponent {
     new Gadget('Chat', faComment),
     new Gadget('Directory', faAddressBook)
   ];
+
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.gadgets, event.previousIndex, event.currentIndex);
+  }
 
 }

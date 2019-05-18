@@ -1,6 +1,6 @@
 <div style="display: flex;">
   <div style="flex: 0 0 300px;">
-    <div class="example-list" cdkDropList>
+    <div class="example-list" (cdkDropListDropped)="drop($event)" cdkDropList>
       <app-gadget *ngFor="let gadget of gadgets" [gadget]="gadget" cdkDrag></app-gadget>
     </div>
   </div>
