@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { faBell, faTasks, faUserEdit, faHistory, faEnvelope, faComment, faAddressBook } from '@fortawesome/free-solid-svg-icons';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { faHome, faBell, faTasks, faUserEdit, faHistory, faEnvelope, faComment, faAddressBook } from '@fortawesome/free-solid-svg-icons';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 import { Gadget } from './gadget/gadget';
 
@@ -10,6 +10,8 @@ import { Gadget } from './gadget/gadget';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
+  home: Gadget = new Gadget('Home', faHome);
 
   gadgets: Gadget[] = [
     new Gadget('Marquee', faBell),
@@ -21,8 +23,17 @@ export class AppComponent {
     new Gadget('Directory', faAddressBook)
   ];
 
+  tabs: Gadget[] = [];
+
   drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.gadgets, event.previousIndex, event.currentIndex);
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(event.previousContainer.data,
+                        event.container.data,
+                        event.previousIndex,
+                        event.currentIndex);
+    }
   }
 
 }
