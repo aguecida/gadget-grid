@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { faHome, faBell, faTasks, faUserEdit, faHistory, faEnvelope, faComment, faAddressBook } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faBell, faTasks, faUserEdit, faHistory, faEnvelope, faComment, faAddressBook, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 import { Gadget } from './gadget/gadget';
@@ -15,13 +15,14 @@ export class AppComponent {
 
   gadgets: Gadget[] = [
     new Gadget('Marquee', faBell),
-    new Gadget('Taskbar', faTasks),
-    new Gadget('Interaction Capture', faUserEdit),
     new Gadget('Interaction Activity', faHistory),
     new Gadget('Email', faEnvelope),
     new Gadget('Chat', faComment),
     new Gadget('Directory', faAddressBook)
   ];
+
+  taskbar: IconDefinition = faTasks;
+  interactionCapture: IconDefinition = faUserEdit;
 
   tabs: Gadget[] = [];
 

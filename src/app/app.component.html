@@ -1,18 +1,49 @@
-<div style="display: flex;">
-  <div style="flex: 0 0 400px; margin-right: 10px;">
+<div style="display: flex; margin: 10px;">
+  <div style="flex: 0 0 400px; margin-right: 20px;">
+    <mat-form-field appearance="outline" class="example-full-width" style="width: 100%;">
+      <mat-label>Layout Name</mat-label>
+      <input matInput placeholder="Name" value="Layout #1">
+    </mat-form-field>
+    <h4 style="margin-left: 5px; margin-bottom: 0;">Available Gadgets</h4>
+    <div style="width: 100%; font-size: 12px; color: #777; margin-left: 5px; margin-bottom: 10px;">Drag and drop gadgets to include them in your layout</div>
     <div [cdkDropListData]="gadgets" #gadgetList="cdkDropList" [cdkDropListConnectedTo]="[tabList]" class="example-list" (cdkDropListDropped)="drop($event)" cdkDropList>
       <app-gadget *ngFor="let gadget of gadgets" [gadget]="gadget" cdkDrag></app-gadget>
     </div>
   </div>
   <div style="flex: 1 1 auto;">
-    <mat-drawer-container style="height: 90vh;">
-      <mat-drawer mode="side" opened>
-        <app-tab [gadget]="home"></app-tab>
-        <div [cdkDropListData]="tabs" #tabList="cdkDropList" (cdkDropListDropped)="drop($event)" [cdkDropListConnectedTo]="[gadgetList]" cdkDropList>
-          <app-tab *ngFor="let tab of tabs" [gadget]="tab" cdkDrag></app-tab>
-        </div>
-      </mat-drawer>
-      <mat-drawer-content>Main content</mat-drawer-content>
-    </mat-drawer-container>
+    <mat-tab-group>
+      <mat-tab label="Agent"> 
+          <mat-drawer-container style="margin-top: 28px; height: calc(100vh - 20px - 49px - 28px);">
+              <mat-drawer mode="side" opened>
+                <app-tab [gadget]="home"></app-tab>
+                <div style="height: calc(100% - 60.5px);" [cdkDropListData]="tabs" #tabList="cdkDropList" (cdkDropListDropped)="drop($event)" [cdkDropListConnectedTo]="[gadgetList]" cdkDropList>
+                  <app-tab *ngFor="let tab of tabs" [gadget]="tab" cdkDrag></app-tab>
+                </div>
+              </mat-drawer>
+              <mat-drawer-content>
+                <div style="padding: 10px 20px 0; display: flex;">
+                  <a id="brand" href="https://www.upstreamworks.com" target="_blank">
+                    <img src="https://www.upstreamworks.com/wp-content/uploads/2016/07/upstreamworks-logo.png" style="height: 30px;" />
+                  </a>
+                  <span style="flex: 1 1 auto"></span>
+                  <div style="background: #ddd; height: 25px; width: 25px; border-radius: 50%;"></div>
+                  <div style="background: #ddd; height: 25px; width: 25px; border-radius: 50%; margin-left: 10px;"></div>
+                  <div style="background: #ddd; height: 25px; width: 25px; border-radius: 50%; margin-left: 10px;"></div>
+                </div>
+                <mat-card style="margin: 10px 20px;">
+                  <fa-icon style="margin-right: 10px;" [icon]="taskbar" size="lg"></fa-icon>
+                  <span>Taskbar</span>
+                </mat-card>
+                <mat-card style="margin: 10px 20px; height: 150px;">
+                  <fa-icon style="margin-right: 10px;" [icon]="interactionCapture" size="lg"></fa-icon>
+                  <span>Interaction Capture</span>
+                </mat-card>
+              </mat-drawer-content>
+            </mat-drawer-container>  
+      </mat-tab>
+      <mat-tab label="Supervisor"> Content 2 </mat-tab>
+      <mat-tab label="Admin"> Content 3 </mat-tab>
+      <mat-tab label="Some custom role"> Content 4 </mat-tab>
+    </mat-tab-group>
   </div>
 </div>
